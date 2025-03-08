@@ -112,5 +112,20 @@ elif st.session_state.selected_section == "Code":
     st.code(code, language="python")
 
 elif st.session_state.selected_section == "Other Info":
-    st.markdown("**Additional insights about the algorithm**")
-    st.write("Mathematical Equation used for Gradient Descent approach, etc.")
+st.write('''Mathematical Equations :
+             \nThe equation of Linear Regression is y = m.x + b'''
+    )
+    st.write("To update the parameters m(slope) & b(intercept) we calculate the gradients of the MSE loss function :\n")
+    st.latex(r"J(m, b) = \frac{1}{n} \sum_{i=1}^{n} (y_i - (mx_i + b))^2")
+    st.write("The gradient for slope(m):")
+    st.latex(r"\frac{\partial J}{\partial m} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - (mx_i + b))")
+    st.write("The gradients for intercept(b):")
+    st.latex(r"\frac{\partial J}{\partial b} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - (mx_i + b))")
+    st.write("Gradient Descent Update Equations")
+    st.latex(r"m = m - \alpha \cdot \frac{\partial J}{\partial m}")
+    st.latex(r"b = b - \alpha \cdot \frac{\partial J}{\partial b}")
+    st.write('''This approach is useful when,
+             \n1. Large Dataset \n2. High Dimensional Data
+             \n3. Online Streaming \n4. Memory Constraints 
+    ''')
+
