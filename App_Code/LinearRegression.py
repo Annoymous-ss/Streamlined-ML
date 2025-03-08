@@ -112,7 +112,7 @@ elif st.session_state.selected_section == "Code":
     st.code(code, language="python")
 
 elif st.session_state.selected_section == "Other Info":
-st.write('''Mathematical Equations :
+    st.write('''Mathematical Equations :
              \nThe equation of Linear Regression is y = m.x + b'''
     )
     st.write("To update the parameters m(slope) & b(intercept) we calculate the gradients of the MSE loss function :\n")
