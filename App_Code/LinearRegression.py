@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes, fetch_california_housing
 from src.model1 import model, code # your custom code
@@ -16,22 +17,21 @@ st.markdown(
     "copy the code, and see some additional info."
 )
 
-# Sections
-sections = ["Try It Out", "Code", "Other Info"]
-if "selected_section" not in st.session_state:
-    st.session_state.selected_section = sections[0]
-
-cols = st.columns(len(sections))
-for i, sec in enumerate(sections):
-    if cols[i].button(sec):
-        st.session_state.selected_section = sec
+# Horizontal Navbar for the sections 
+selected = option_menu(
+    menu_title = None,
+    options = ["Try it out", "Code", "Info"],
+    icons=["play-circle", "code-slash", "info-circle"],
+    default_index = 0,
+    orientation = "horizontal"
+)
 
 # Prepare placeholders
 df = None
 X = None
 y = None
 
-if st.session_state.selected_section == "Try It Out":
+if selected == "Try it out":
     st.write("Here's a quick demo. Upload a dataset **OR** use a toy dataset.")
 
     # Let user pick a toy dataset or "None"
@@ -106,12 +106,12 @@ if st.session_state.selected_section == "Try It Out":
         #  and plots Actual vs. Predicted with a scatter!)
         model(X_train, y_train, X_test, y_test, epoch, lr)
 
-elif st.session_state.selected_section == "Code":
+elif selected == "Code":
     # Show the user your code snippet (or entire file)
     st.markdown("**The code snippet goes here.**")
     st.code(code, language="python")
 
-elif st.session_state.selected_section == "Other Info":
+elif selected == "Info":
     st.write('''Mathematical Equations :
              \nThe equation of Linear Regression is y = m.x + b'''
     )
@@ -129,3 +129,4 @@ elif st.session_state.selected_section == "Other Info":
              \n3. Online Streaming \n4. Memory Constraints 
     ''')
 
+    
